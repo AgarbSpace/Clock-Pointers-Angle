@@ -7,7 +7,7 @@ import clockRouter from './router/clockRouter.js';
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use('/rest/clock', clockRouter);
+app.use(clockRouter);
 app.use(errorHandlerMiddleware);
 
 export default app;
