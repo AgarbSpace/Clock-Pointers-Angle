@@ -21,7 +21,7 @@ async function calculatePointersAngle(req, res) {
       'Hour must be between 0 - 23 and Minutes between 0 - 59\n'
     );
   }
-  
+
   if (hour >= 12) {
     hour -= 12;
   }
@@ -32,7 +32,7 @@ async function calculatePointersAngle(req, res) {
   );
 
   if (register) {
-    return res.send({ angle: register.angle }).status(201);
+    return res.send({ angle: register.angle });
   }
 
   let angle = Math.floor(Math.abs((60 * hour - 11 * minute) / 2));
@@ -47,7 +47,7 @@ async function calculatePointersAngle(req, res) {
     Number(angle, 10)
   );
 
-  return res.send({ angle }).status(201);
+  return res.send({ angle });
 }
 
 const clockController = {
