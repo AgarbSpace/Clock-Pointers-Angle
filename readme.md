@@ -5,6 +5,7 @@
 - Written in JavaScript.
 - This project uses MVC Architecture
 - This poject uses Prisma ORM and PostgreSql database
+- The tests was made with jest
 
 ## Requirements
 
