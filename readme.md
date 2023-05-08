@@ -43,7 +43,7 @@ $ npm run dev
 
 ```bash
 # to send a request, example:
-$  http://localhost:8080/v1/rest/clock/6/0
+$  curl http://localhost:8080/v1/rest/clock/6/0
 result: {"angle":180}
 
 ```
