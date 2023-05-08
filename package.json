@@ -7,6 +7,7 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
+    "migrate:dev": "npx prisma generate && npx prisma migrate dev",
     "lint": "eslint .",
     "lint:watch": "eslint '**/*.{js,jsx}' --fix --ext js,jsx",
     "format": "prettier --write .",
