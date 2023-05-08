@@ -31,6 +31,8 @@ $ npm install
 - To run the app, you need to create an .env file following the .env.example file, then run:
 
 ```bash
+# generate Prisma Client and Database
+$ npm run migrate:dev
 # run the app
 $ npm run dev
 
