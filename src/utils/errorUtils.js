@@ -8,9 +8,9 @@ export function errorTypeToStatusCode(type) {
 }
 
 export function notFoundError(message) {
-  return { type: 'not_found', message: message || '' };
+  return { type: 'not_found', message: message};
 }
 
 export function formatError(message) {
-  return { type: 'hour_minuteFormat', message: message || '' };
+  return { type: 'hour_minuteFormat', message: message};
 }

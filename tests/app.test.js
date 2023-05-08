@@ -2,10 +2,7 @@ import supertest from 'supertest';
 import app from '../src/app.js';
 import prisma, { disconnectPrisma } from '../src/database.js';
 import factory from './factory/dataFactory.js';
-import dotenv from 'dotenv';
 import clockService from '../src/service/clockService.js';
-
-dotenv.config({ path: '.env.test' });
 
 describe('GET /v1/rest/clock/:hour/:minute', () => {
   afterEach(async () => {
@@ -13,7 +10,7 @@ describe('GET /v1/rest/clock/:hour/:minute', () => {
   })
 
   it('Should return 200 and persist data when giving a valid hour and minute that have not been saved yet', async () => {
-    await prisma.$executeRaw`TRUNCATE TABLE "Clock"`;
+    await prisma.$executeRaw`TRUNCATE TABLE clock`;
 
     let { hour, minute } = factory.giveHourAndMinute();
     let islower = false;
@@ -42,7 +39,7 @@ describe('GET /v1/rest/clock/:hour/:minute', () => {
   });
 
   it('Should return 200 and dont save when giving a valid hour and minute that have saved', async () => {
-    await prisma.$executeRaw`TRUNCATE TABLE "Clock"`;
+    await prisma.$executeRaw`TRUNCATE TABLE clock`;
 
     let { hour, minute } = factory.giveHourAndMinute();
     const firstInsert = await supertest(app).get(
@@ -73,7 +70,7 @@ describe('GET /v1/rest/clock/:hour/:minute', () => {
   });
 
   it('Should return an FormatError with status 422 when giving a negative, decimal or NaN', async () => {
-    await prisma.$executeRaw`TRUNCATE TABLE "Clock"`;
+    await prisma.$executeRaw`TRUNCATE TABLE clock`;
 
     let hour = factory.giveNegativeNumber();
     let minute = factory.giveNegativeNumber();
@@ -104,7 +101,7 @@ describe('GET /v1/rest/clock/:hour/:minute', () => {
   });
 
   it('Should return an FormatError with status 422 when giving a number greater than 23 in hour and grater than 59 in minute', async () => {
-    await prisma.$executeRaw`TRUNCATE TABLE "Clock"`;
+    await prisma.$executeRaw`TRUNCATE TABLE clock`;
 
     let { hour, minute } = factory.giveInvalidHourAndMinute();
 
@@ -127,6 +124,7 @@ describe('GET /v1/rest/clock/:hour', () => {
   });
 
   it('Should return status 200 when giving only hour param', async () => {
+    await prisma.$executeRaw`TRUNCATE TABLE clock`;
     let { hour } = factory.giveHourAndMinute();
     let minute = 0;
 

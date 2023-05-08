@@ -16,4 +16,5 @@ model Clock {
   minute Int
   angle Int
   date DateTime @default(now())
+  @@map("clock")
 }
